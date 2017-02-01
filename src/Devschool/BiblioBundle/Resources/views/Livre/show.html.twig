@@ -1,0 +1,17 @@
+{# src\Devschool\BiblioBundle\Resources\views\Livre\show.html.twig #}
+{% extends 'DevschoolBiblioBundle::layout.html.twig' %}
+
+{% block title %}{{ livre.titre }}{% endblock %}
+
+{% block body %}
+    <h1>{{ livre.titre }}</h1>
+
+    <span>Ecrit par {{ livre.auteur }}</span>
+
+    <p>{{ livre.description }}</p>
+
+    <span>Nombre de pages : {{ livre.nombrePages }}</span>
+
+
+    <p><a href="{{ path('page_livres') }}">Retour</a></p>
+{% endblock %}

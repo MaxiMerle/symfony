@@ -1,0 +1,50 @@
+{# src\Devschool\BiblioBundle\Resources\views\Livre\list.html.twig #}
+{% extends 'DevschoolBiblioBundle::layout.html.twig' %}
+
+{% block title %}Bibliothèque{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Cinéma</p>
+                <div class="list-group">
+                    <a href="cinema-films.html" class="list-group-item active">Films</a>
+                    <a href="cinema-realisateurs.html" class="list-group-item">Réalisateurs</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+            
+                <h2>{{ titre|upper }}</h2>
+                
+                <br />
+            {% for livre in livres %}
+                <div class="thumbnail">
+                    <div class="caption-full">
+                        <h4 class="pull-right">Science-Fiction</h4>
+                        <h4><a href="{{ path('page_livre', {'id': livre.id}) }}">{{ livre.titre }}</a></h4>
+                        <p>L’action se déroule en 21541 sur Pandora, une des lunes de Polyphème, une planète géante gazeuse en orbite autour d'Alpha Centauri A. L’exolune, recouverte d’une jungle luxuriante, est le théâtre du choc entre des humains, venus exploiter un minerai rare susceptible de résoudre la crise énergétique sur Terre, et la population autochtone, les Na’vis, qui vivent en parfaite symbiose avec leur environnement et tentent de se défendre face à l’invasion militarisée. Un programme est créé par les terriens, le programme Avatar, qui va leur permettre de contrôler des corps Na’vi clonés associés à des gènes humains, afin de s’insérer dans la population et de tenter de négocier avec elle, dans la mesure où le clan Omaticaya est installé dans un gigantesque arbre maison situé sur un des principaux gisements de ce minerai dénommé Unobtainium. Le personnage central de l’histoire est Jake Sully, un marine paraplégique qui, via son avatar, va devoir choisir son camp avec pour enjeu, le destin de la planète.</p>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">sorti le 20/10/1993</p>
+                    {% if livre.auteur == "J. K. Rowling" %}
+                        <p>Réalisé par : <a href="cinema-films-realisateur.html"><strong>{{ livre.auteur }}<strong></a></p>
+                        {% else %}
+                        <p>Réalisé par : <a href="cinema-films-realisateur.html">{{ livre.auteur }}</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+                
+               
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endblock %}

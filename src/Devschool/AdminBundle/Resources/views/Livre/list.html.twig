@@ -1,0 +1,11 @@
+{# src\Devschool\AdminBundle\Resources\views\Livre\list.html.twig #}
+<h1>Liste des livres :</h1>
+<ul>
+    {% for livre in livres %}
+        <li>
+            <a href="{{ path('admin_livre_modif', {'id': livre.id}) }}">{{ livre.titre }}</a>
+            <a href="{{ path('admin_livre_supprimer', {'id': livre.id}) }}">(x)</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{{ path('admin_livre_ajout') }}">Ajouter</a>
