@@ -1,23 +1,8 @@
-{# src\Devschool\AdminBundle\Resources\views\Livre\list.html.twig #}
-<title>Accueil - Devschool</title>
- <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-12">
-                <h1>Accueil</h1>
-                <p>Bienvenue sur le site Symfony de Devschool</p>
-            </div>
-
-        </div>
-
-    </div>
+{# src\Devschool\AdminBundle\Resources\views\Genre\list.html.twig #}
+<h1>Liste des genres :</h1>
 <ul>
-    {% for livre in livres %}
-        <li>
-            <a href="{{ path('admin_livre_modif', {'id': livre.id}) }}">{{ livre.titre }}</a>
-            <a href="{{ path('admin_livre_supprimer', {'id': livre.id}) }}">(x)</a>
-        </li>
-    {% endfor %}
+{% for genre in genres %}
+    <li>{{ genre.nom }}</li>
+{% endfor %}
 </ul>
-<a href="{{ path('admin_livre_ajout') }}">Ajouter</a>
+<a href="{{ path('admin_genre_ajout') }}">Ajouter</a>

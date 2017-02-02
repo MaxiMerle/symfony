@@ -1,0 +1,25 @@
+{# src\Devschool\CinemaBundle\Resources\views\Film\show.html.twig #}
+{% extends 'DevschoolCinemaBundle::layout.html.twig' %}
+
+{% block title %}{{ films.titre }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+
+ <h1>{{ films.titre }}</h1>
+
+    <span>Ecrit par {{ films.realisateur }}</span>
+
+    <p>{{ films.description }}</p>
+
+   
+
+
+    <p><a href="{{ path('page_films') }}">Retour</a></p>
+    
+
+</div
+</div>
+   {% endblock %}

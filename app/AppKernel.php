@@ -16,9 +16,12 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new Devschool\BiblioBundle\DevschoolBiblioBundle(),
+            new Devschool\CinemaBundle\DevschoolCinemaBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+            new Petkopara\MultiSearchBundle\PetkoparaMultiSearchBundle(),
+            new Petkopara\CrudGeneratorBundle\PetkoparaCrudGeneratorBundle(),
             new Devschool\AdminBundle\DevschoolAdminBundle(),
-            new Devschool\BiblioBundle\DevschoolBiblioBundle()
-            
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

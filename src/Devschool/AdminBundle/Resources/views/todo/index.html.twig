@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Admin - Index {% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    </head>
+    <body>
+           <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:#c0392b;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="color:#ecf0f1;" class="navbar-brand" href="{{ path('page_accueil') }}">Retour à l'Accueil</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a style="color:#ecf0f1;" href="{{ ('/admin/create') }}">Ajouter un Film</a>
+                    </li>
+                    <li>
+                        <a style="color:#ecf0f1;" href="#">Créer un Genre</a>
+                    </li>
+                    <li>
+                        <a style="color:#ecf0f1;" href="{{ path('admin') }}">Admin</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item slides active">
+      <div class="slide-1"></div>
+      <div class="hero">
+        <hgroup>
+            <h1>Bienvenue sur la page Admin</h1>        
+            <h3 style="color: black;">Ajoutez quelque chose ! </h3>
+             <a href="{{ ('/admin/create') }}" class="btn btn-warning btn-lg" role="button">Ajouter un Livre</a>
+        <a href="{{ ('/admin/create') }}" class="btn btn-success btn-lg" role="button">Ajouter un Film</a>
+        <a href="#" class="btn btn-primary btn-lg" role="button">Ajouter un Genre</a>
+        </hgroup>
+      </div>
+    </div>
+  </div> 
+</div>
+
+
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="text-align: center;">
+                {% for flash_message in app.session.flashbag.get('notice') %}
+                    <div class="alert alert-success">
+                        {{flash_message}}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        <div id="content">
+            {% block body %}
+            <div class="container">
+            <h2 class="page-header"> GÉRER LES FILMS</h2>
+            <div class="row">
+          
+            <div class="col-md-12 center">
+                <table class="table table-striped"> 
+                    <thead> 
+                    <tr>
+                        <th></th> 
+                        <th>Noms des Films</th> 
+                        <th>Realisateurs</th> 
+                        <th></th>
+                    </tr> 
+                    </thead> 
+                    <tbody> 
+                    {% for film in films %}
+                    <tr> 
+                        <th scope="row">{{film.id}}</th> 
+                            <td>{{ film.titre }}</td> 
+                            <td>{{film.realisateur}}</td>  
+                            <td>
+                            <a href="{{ path('page_film', {'id': film.id}) }}" class="btn btn-success">Details</a>
+                            <a href="{{ path('page_edit', {'id': film.id}) }}" class="btn btn-default">Modifier</a>
+                            <a href="{{ path('page_delete', {'id': film.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                    </tr>
+                     {% endfor %} 
+                    </tbody> 
+                </table>
+                </div>
+                </div>
+                <div class="row">
+                <h2 class="page-header">Ajouter un Film</h2> 
+                <a class="btn btn-primary" href="{{ ('/admin/create') }}">Nouveau</a>
+                </div>
+                </div>
+            {% endblock %}
+        </div>
+    </body>
+</html>

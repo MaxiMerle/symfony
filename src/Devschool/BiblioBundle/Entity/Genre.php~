@@ -42,6 +42,10 @@ class Genre
     {
         return $this->id;
     }
+    
+    public function __toString() {
+        return $this->nom;
+    }
 
     /**
      * Set nom
@@ -66,5 +70,45 @@ class Genre
     {
         return $this->nom;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->livres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add livre
+     *
+     * @param \Devschool\BiblioBundle\Entity\Livre $livre
+     *
+     * @return Genre
+     */
+    public function addLivre(\Devschool\BiblioBundle\Entity\Livre $livre)
+    {
+        $this->livres[] = $livre;
+
+        return $this;
+    }
+
+    /**
+     * Remove livre
+     *
+     * @param \Devschool\BiblioBundle\Entity\Livre $livre
+     */
+    public function removeLivre(\Devschool\BiblioBundle\Entity\Livre $livre)
+    {
+        $this->livres->removeElement($livre);
+    }
+
+    /**
+     * Get livres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLivres()
+    {
+        return $this->livres;
+    }
+}

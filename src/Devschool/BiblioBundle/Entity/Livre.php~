@@ -159,5 +159,28 @@ class Livre
     {
         return $this->nombrePages;
     }
-}
 
+    /**
+     * Set genre
+     *
+     * @param \Devschool\BiblioBundle\Entity\Genre $genre
+     *
+     * @return Livre
+     */
+    public function setGenre(\Devschool\BiblioBundle\Entity\Genre $genre = null)
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return \Devschool\BiblioBundle\Entity\Genre
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+}

@@ -25,7 +25,7 @@ class DefaultController extends Controller
     {
         $livres = $this->getDoctrine()->getRepository('DevschoolBiblioBundle:Livre')->findAll();
 
-        $titre_de_la_page = 'Liste des Films';
+        $titre_de_la_page = 'Liste des Livres';
 
         return $this->render(
             'DevschoolBiblioBundle:Livre:list.html.twig',
