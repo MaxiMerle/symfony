@@ -25,8 +25,11 @@
                     <li>
                         <a style="color:#ecf0f1;" href="{{ ('/admin/create') }}">Ajouter un Film</a>
                     </li>
+                                        <li>
+                        <a style="color:#ecf0f1;" href="{{ ('/admin/create/livre') }}">Ajouter un Livre</a>
+                    </li>
                     <li>
-                        <a style="color:#ecf0f1;" href="#">Créer un Genre</a>
+                        <a style="color:#ecf0f1;" href="{{ ('/admin/create/genre') }}">Créer un Genre</a>
                     </li>
                     <li>
                         <a style="color:#ecf0f1;" href="{{ path('admin') }}">Admin</a>
@@ -51,9 +54,9 @@
         <hgroup>
             <h1>Bienvenue sur la page Admin</h1>        
             <h3 style="color: black;">Ajoutez quelque chose ! </h3>
-             <a href="{{ ('/admin/create') }}" class="btn btn-warning btn-lg" role="button">Ajouter un Livre</a>
-        <a href="{{ ('/admin/create') }}" class="btn btn-success btn-lg" role="button">Ajouter un Film</a>
-        <a href="#" class="btn btn-primary btn-lg" role="button">Ajouter un Genre</a>
+             <a href="{{ ('/admin/create/livre') }}" class="btn btn-warning btn-lg" role="button" style="color: black;">Ajouter un Livre</a>
+        <a href="{{ ('/admin/create') }}" class="btn btn-success btn-lg" role="button" style="color: black;">Ajouter un Film</a>
+        <a href="{{ ('/admin/create/genre') }}" class="btn btn-primary btn-lg" role="button" style="color: black;">Ajouter un Genre</a>
         </hgroup>
       </div>
     </div>
@@ -112,10 +115,42 @@
                 </table>
                 </div>
                 </div>
-                <div class="row">
-                <h2 class="page-header">Ajouter un Film</h2> 
-                <a class="btn btn-primary" href="{{ ('/admin/create') }}">Nouveau</a>
+
                 </div>
+        </div>
+                <div id="content">
+            <div class="container">
+            <h2 class="page-header"> GÉRER LES LIVRES</h2>
+            <div class="row">
+          
+            <div class="col-md-12 center">
+                <table class="table table-striped"> 
+                    <thead> 
+                    <tr>
+                        <th></th> 
+                        <th>Noms des Films</th> 
+                        <th>Realisateurs</th> 
+                        <th></th>
+                    </tr> 
+                    </thead> 
+                    <tbody> 
+                    {% for livres in livres %}
+                    <tr> 
+                        <th scope="row">{{livres.id}}</th> 
+                            <td>{{ livres.titre }}</td> 
+                            <td>{{livres.auteur}}</td>  
+                            <td>
+                            <a href="{{ path('page_livres', {'id': livres.id}) }}" class="btn btn-success">Details</a>
+                            <a href="{{ path('page_edit', {'id': livres.id}) }}" class="btn btn-default">Modifier</a>
+                            <a href="{{ path('page_delete', {'id': livres.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                    </tr>
+                     {% endfor %} 
+                    </tbody> 
+                </table>
+                </div>
+                </div>
+
                 </div>
             {% endblock %}
         </div>
