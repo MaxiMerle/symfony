@@ -293,7 +293,7 @@ class DefaultController extends Controller
             );
     }
           /**
-      * @Route("/admin/delete/{id}", name="page_delete")
+      * @Route("/admin/delete/{id}", name="page_deleteLivre")
      */
     public function deleteLivreAction($id)
     {
@@ -309,6 +309,65 @@ class DefaultController extends Controller
                 );
             return $this->redirectToRoute('admin');
 
+    }
+
+              /**
+     * @Route("/admin/editLivre/{id}", requirements={"id": "\d+"}, name="page_editLivre")
+     */
+    public function editLivreAction($id, Request $request) 
+    {
+               $livres = $this->getDoctrine()
+       ->getRepository('DevschoolBiblioBundle:Livre')
+       ->find($id);
+
+            $livres->setTitre($livres->getTitre());
+            $livres->setAuteur($livres->getAuteur());
+            $livres->setDescription($livres->getDescription());
+            $livres->setNombrepages($livres->getNombrepages());
+
+
+        $form = $this ->createFormBuilder($livres)
+        ->add('titre', TextType::class, array('attr' => array('class' => 'fomr-control', 'style' => 'margin-bottom:15px')))
+        ->add('auteur', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+        ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+        ->add('nombrePages', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+        ->add('Modifier le Livre', SubmitType::class, array('attr' => array('label' => 'Create Film', 'class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
+        ->getForm();
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            //Get Data
+
+            $titre = $form['titre']->getData();
+            $auteur = $form['auteur']->getData();
+            $description = $form['description']->getData();
+            $nombrePages = $form['nombrePages']->getData();
+        
+
+            $em = $this->getDoctrine()->getManager();
+            $livres = $em->getRepository('DevschoolBiblioBundle:Livre')->find($id);
+
+            $livres->setTitre($titre);
+            $livres->setAuteur($auteur);
+            $livres->setDescription($description);
+            $livres->setNombrepages($nombrePages);
+
+
+
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Livre Modifié !'
+                );
+            return $this->redirectToRoute('admin');
+        }
+
+ 
+        return $this->render('DevschoolAdminBundle:todo:editLivre.html.twig', array(
+            'livres' =>$livres,
+            'form' => $form->createView()
+            ));
     }
 
 }

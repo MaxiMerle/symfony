@@ -141,8 +141,8 @@
                             <td>{{livres.auteur}}</td>  
                             <td>
                             <a href="{{ path('page_livres', {'id': livres.id}) }}" class="btn btn-success">Details</a>
-                            <a href="{{ path('page_edit', {'id': livres.id}) }}" class="btn btn-default">Modifier</a>
-                            <a href="{{ path('page_delete', {'id': livres.id}) }}" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ path('page_editLivre', {'id': livres.id}) }}" class="btn btn-default">Modifier</a>
+                            <a href="{{ path('page_deleteLivre', {'id': livres.id}) }}" class="btn btn-danger">Supprimer</a>
                             </td>
                     </tr>
                      {% endfor %} 
