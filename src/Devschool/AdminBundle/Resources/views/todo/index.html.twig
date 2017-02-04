@@ -32,6 +32,12 @@
                         <a style="color:#ecf0f1;" href="{{ ('/admin/create/genre') }}">Créer un Genre</a>
                     </li>
                     <li>
+                        <a style="color:#ecf0f1;" href="{{ path('admin_realisateur_ajout') }} ">Ajouter un Realisateur</a>
+                    </li>
+                    <li>
+                        <a style="color:#ecf0f1;" href="{{ path('admin_realisateur_liste') }} ">Tous les Realisateurs</a>
+                    </li>
+                    <li>
                         <a style="color:#ecf0f1;" href="{{ path('admin') }}">Admin</a>
                     </li>
                 </ul>
@@ -54,9 +60,10 @@
         <hgroup>
             <h1>Bienvenue sur la page Admin</h1>        
             <h3 style="color: black;">Ajoutez quelque chose ! </h3>
-             <a href="{{ ('/admin/create/livre') }}" class="btn btn-warning btn-lg" role="button" style="color: black;">Ajouter un Livre</a>
-        <a href="{{ ('/admin/create') }}" class="btn btn-success btn-lg" role="button" style="color: black;">Ajouter un Film</a>
-        <a href="{{ ('/admin/create/genre') }}" class="btn btn-primary btn-lg" role="button" style="color: black;">Ajouter un Genre</a>
+             <a href="{{ ('/admin/create/livre') }}" class="btn btn-warning btn-md" role="button" style="color: black;">Ajouter un Livre</a>
+        <a href="{{ ('/admin/create') }}" class="btn btn-success btn-md" role="button" style="color: black;">Ajouter un Film</a>
+        <a href="{{ ('/admin/create/genre') }}" class="btn btn-primary btn-md" role="button" style="color: black;">Ajouter un Genre</a>
+          <a href="{{ path('admin_realisateur_ajout') }}" class="btn btn-danger btn-md" role="button" style="color: black;">Ajouter un Realisateur</a>
         </hgroup>
       </div>
     </div>
@@ -140,12 +147,46 @@
                             <td>{{ livres.titre }}</td> 
                             <td>{{livres.auteur}}</td>  
                             <td>
-                            <a href="{{ path('page_livres', {'id': livres.id}) }}" class="btn btn-success">Details</a>
+                            <a href="{{ path('page_livre', {'id': livres.id}) }}" class="btn btn-success">Details</a>
                             <a href="{{ path('page_editLivre', {'id': livres.id}) }}" class="btn btn-default">Modifier</a>
                             <a href="{{ path('page_deleteLivre', {'id': livres.id}) }}" class="btn btn-danger">Supprimer</a>
                             </td>
                     </tr>
                      {% endfor %} 
+                    </tbody> 
+                </table>
+                </div>
+                </div>
+
+                </div>
+                 <div id="content">
+            <div class="container">
+            <h2 class="page-header"> GÉRER LES REALISATEURS</h2>
+            <div class="row">
+          
+            <div class="col-md-12 center">
+                <table class="table table-striped"> 
+                    <thead> 
+                    <tr>
+                        <th></th> 
+                        <th>Realisateurs</th> 
+                        <th>Date Naissance</th> 
+                        <th></th>
+                    </tr> 
+                    </thead> 
+                    <tbody> 
+                 {% for realisateur in realisateur %}
+                    <tr> 
+                        <th scope="row"></th> 
+                            <td>{{realisateur.nom}} {{realisateur.prenom}}</td> 
+                            <td>{{realisateur.naissance|date("m/d/Y")}}</td>  
+                            <td>
+                            <a href="" class="btn btn-success">Details</a>
+                            <a href="{{ path('admin_realisateur_modif', {'id': realisateur.id}) }}" class="btn btn-default">Modifier</a>
+                            <a href="{{ path('admin_realisateur_supprimer', {'id': realisateur.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                    </tr>
+                   {% endfor %} 
                     </tbody> 
                 </table>
                 </div>

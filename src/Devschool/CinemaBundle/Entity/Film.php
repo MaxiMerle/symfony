@@ -52,9 +52,11 @@ class Film
     /**
      * @var string
      *
-      * @ORM\ManyToOne(targetEntity="Realisateur", inversedBy="films")
+      * @ORM\ManyToOne(targetEntity="Genre", inversedBy="films")
      */
     private $genre;
+
+
 
 
     /**
@@ -115,29 +117,7 @@ class Film
         return $this->description;
     }
 
-    /**
-     * Set realisateur
-     *
-     * @param string $realisateur
-     *
-     * @return Film
-     */
-    public function setRealisateur($realisateur)
-    {
-        $this->realisateur = $realisateur;
 
-        return $this;
-    }
-
-    /**
-     * Get realisateur
-     *
-     * @return string
-     */
-    public function getRealisateur()
-    {
-        return $this->realisateur;
-    }
 
     /**
      * Set date
@@ -185,5 +165,31 @@ class Film
     public function getGenre()
     {
         return $this->genre;
+    }
+
+
+
+    /**
+     * Set realisateur
+     *
+     * @param \Devschool\CinemaBundle\Entity\Realisateur $realisateur
+     *
+     * @return Film
+     */
+    public function setRealisateur(\Devschool\CinemaBundle\Entity\Realisateur $realisateur = null)
+    {
+        $this->realisateur = $realisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get realisateur
+     *
+     * @return \Devschool\CinemaBundle\Entity\Realisateur
+     */
+    public function getRealisateur()
+    {
+        return $this->realisateur;
     }
 }

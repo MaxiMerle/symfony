@@ -1,5 +1,5 @@
 {# src\Devschool\CinemaBundle\Resources\views\Film\list.html.twig #}
-{% extends 'DevschoolCinemaBundle::layout.html.twig' %}
+{% extends 'DevschoolCinemaBundle:Default:layout.html.twig' %}
 
 {% block title %}Bibliothèque{% endblock %}
 
@@ -13,7 +13,7 @@
                 <p class="lead">Cinéma</p>
                 <div class="list-group">
                     <a href="{{ path('page_films') }}" class="list-group-item active">Films</a>
-                    <a href="#" class="list-group-item">Réalisateurs</a>
+                    <a href="{{('realisateurs')}}" class="list-group-item">Réalisateurs</a>
                 </div>
             </div>
 
@@ -25,19 +25,25 @@
             {% for film in films %}
                 <div class="thumbnail">
                     <div class="caption-full">
-                        <h4 class="pull-right">Science-Fiction</h4>
+                  
+                 {% for genre in genres %}
+                        <h4 class="pull-right"{{genre.nom}}></h4>
+                    
+                   {% endfor %}      
                         <h4><a href="{{ path('page_film', {'id': film.id}) }}">{{ film.titre }}</a></h4>
                         <p>{{ film.description }}</p>
                     </div>
                     <div class="ratings">
                         <p class="pull-right" style="color:#e74c3c;">sorti le <strong>{{film.date|date ('j F Y')}}</strong</p>
-                    {% if film.realisateur == "J. K. Rowling" %}
-                        <p>Réalisé par : <a href="cinema-films-realisateur.html"><strong>{{ film.realisateur }}<strong></a></p>
-                        {% else %}
-                        <p>Réalisé par : <a href="cinema-films-realisateur.html">{{ film.realisateur }}</a></p>
-                        {% endif %}
+
+                        <p>Réalisé par : <a href="">{{ film.realisateur }}</a></p>
+
+                     
+
                     </div>
+                    
                 </div>
+            
             {% endfor %}
                 
                

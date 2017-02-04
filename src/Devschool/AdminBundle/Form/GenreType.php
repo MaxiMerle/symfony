@@ -1,3 +1,5 @@
+<?php
+
 // src/Devschool/AdminBundle/Form/GenreType.php
 namespace Devschool\AdminBundle\Form;
 
@@ -15,3 +17,5 @@ class GenreType extends AbstractType
         ;
     }
 }
+
+ ?>

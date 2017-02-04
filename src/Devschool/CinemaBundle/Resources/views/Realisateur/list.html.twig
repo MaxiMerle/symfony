@@ -1,0 +1,121 @@
+{% extends 'DevschoolCinemaBundle:Default:layout.html.twig' %}
+
+
+{% block body %}   
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('page_accueil') }}">Devschool</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{{ path('page_livres') }}">Bibliothèque</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('page_films') }}">Cinéma</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin') }}">Admin</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">Cinéma</p>
+                <div class="list-group">
+                    <a href="{{ path('page_films') }}" class="list-group-item">Films</a>
+                    <a href="{{path('admin_genre_ajout') }}" class="list-group-item active">Réalisateurs</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <h2>LISTE REALISATEURS</h2>
+
+                <br />
+
+                {% for realisateur in realisateurs %}
+
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong>{{realisateur.prenom}} {{realisateur.nom}}</strong> 
+                            Né le  {{realisateur.naissance|date('Y-m-d')}} <br />
+                            <br />
+                            <p></p>
+                            <hr />
+                            <div class="text-right">
+                                <a href="{{ path('page_realisateur',{'id' : realisateur.id}) }}" class="btn btn-success">Voir ses films</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Devschool Steve 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
+
+{% endblock %}
+
+
+

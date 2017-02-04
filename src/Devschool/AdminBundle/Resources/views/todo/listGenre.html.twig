@@ -1,0 +1,8 @@
+{# src\Devschool\AdminBundle\Resources\views\todo\listGenre.html.twig #}
+<h1>Liste des genres :</h1>
+<ul>
+{% for genre in genres %}
+    <li>{{ genre.nom }}</li>
+{% endfor %}
+</ul>
+<a href="">Ajouter</a>

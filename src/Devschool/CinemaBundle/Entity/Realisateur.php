@@ -38,14 +38,16 @@ class Realisateur
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="naissance", type="date")
      */
-    private $date;
+    private $naissance;
 
-    /**
+
+      /**
     * @ORM\OneToMany(targetEntity="Film", mappedBy="realisateur")
     */
-    private $films;
+      private $films;
+
 
     /**
      * Get id
@@ -57,6 +59,11 @@ class Realisateur
         return $this->id;
     }
 
+    public function __toString() {
+        return $this->nom;
+    }
+
+    
     /**
      * Set nom
      *
@@ -105,29 +112,30 @@ class Realisateur
         return $this->prenom;
     }
 
-    /**
-     * Set date
+      /**
+     * Set naissance
      *
-     * @param \DateTime $date
+     * @param \DateTime $naissance
      *
      * @return Realisateur
      */
-    public function setDate($date)
+    public function setNaissance($naissance)
     {
-        $this->date = $date;
+        $this->naissance = $naissance;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get naissance
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getNaissance()
     {
-        return $this->date;
+        return $this->naissance;
     }
+    
     /**
      * Constructor
      */

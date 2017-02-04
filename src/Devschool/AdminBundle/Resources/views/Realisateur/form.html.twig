@@ -45,23 +45,20 @@
         </div>
         <!-- /.container -->
     </nav>
-        <br><br><br>
+    <br><br><br><br><br>
 
-            <div class="container">
+<div class="container">
     <div class="row">
-        <div id="content">
-            {% block body %}
-            <h2 class="page-header">Ajouter un Genre</h2>
-           
-    {{form_start(form)}}
-    {{form_widget(form)}}
-
-    {{form_end(form)}} <a class="btn btn-danger" href="{{ path('admin') }}">Retour</a>
+        
+    <h1 style="text-align:center;"> Ajouter un Réalisateur </h1>
 
 
+    <div style="text-align:center;">
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    <a class="btn btn-danger" href="{{ path('admin') }}">Retour</a>
     </div>
     </div>
-            {% endblock %}
-        </div>
-    </body>
-    </html>
+</div>

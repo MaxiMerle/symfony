@@ -1,3 +1,5 @@
+
+
 {# src\Devschool\CinemaBundle\Resources\views\Film\show.html.twig #}
 {% extends 'DevschoolCinemaBundle::layout.html.twig' %}
 
@@ -7,19 +9,21 @@
 
 <div class="container">
 <div class="row">
-
+<div class="col-md-12">
+	
  <h1>{{ films.titre }}</h1>
 
-    <span>Ecrit par {{ films.realisateur }}</span>
+    <h3><span>Ecrit par {{ films.realisateur }}</span></h3>
 
     <p>{{ films.description }}</p>
 
    
 
 
-    <p><a href="{{ path('page_films') }}">Retour</a></p>
+    <p><a class="btn btn-danger" href="{{ path('page_films') }}">Retour</a></p>
     
+</div>
 
-</div
+</div>
 </div>
    {% endblock %}

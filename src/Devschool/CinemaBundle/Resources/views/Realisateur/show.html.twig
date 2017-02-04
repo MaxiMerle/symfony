@@ -1,5 +1,5 @@
-{# src\Devschool\CinemaBundle\Resources\views\Film\show.html.twig #}
-{% extends 'DevschoolCinemaBundle::layout.html.twig' %}
+{# src\Devschool\CinemaBundle\Resources\views\Realisateur\show.html.twig #}
+{% extends 'DevschoolCinemaBundle:Default:layout.html.twig' %}
 
 {% block title %}{{ films.titre }}{% endblock %}
 
@@ -14,7 +14,6 @@
 
     <p>{{ films.description }}</p>
 
-   
 
 
     <p><a href="{{ path('page_films') }}">Retour</a></p>

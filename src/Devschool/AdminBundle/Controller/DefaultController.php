@@ -8,11 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Devschool\AdminBundle\Form\GenreType;
 use Devschool\CinemaBundle\Repository\FilmRepository;
 use Devschool\CinemaBundle\Entity\Film;
-use Devschool\BiblioBundle\Entity\Genre;
+use Devschool\CinemaBundle\Entity\Genre;
+use Devschool\CinemaBundle\Entity\Realisateur;
 use Devschool\BiblioBundle\Entity\Livre;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -35,9 +36,10 @@ class DefaultController extends Controller
     {
     	$films = $this->getDoctrine()->getRepository('DevschoolCinemaBundle:Film')->findAll();
         $livres = $this->getDoctrine()->getRepository('DevschoolBiblioBundle:Livre')->findAll();
+        $realisateur = $this->getDoctrine()->getRepository('DevschoolCinemaBundle:Realisateur')->findAll();
     	$titre_de_la_page = 'Liste de Film';
         return $this->render('DevschoolAdminBundle:todo:index.html.twig',
-        	['films' => $films,'livres' => $livres, 'titre' => $titre_de_la_page]
+        	['films' => $films,'livres' => $livres, 'realisateur' => $realisateur, 'titre' => $titre_de_la_page]
         	);
     }
             /**
@@ -48,9 +50,10 @@ class DefaultController extends Controller
     	$films = new Film;
     	$form = $this ->createFormBuilder($films)
     	->add('titre', TextType::class, array('attr' => array('class' => 'fomr-control', 'style' => 'margin-bottom:15px')))
-    	->add('realisateur', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+    	->add('realisateur', EntityType::class, array('class' => 'DevschoolCinemaBundle:Realisateur','choice_label' => 'nom','expanded' => true,))
+         ->add('genre', EntityType::class, array( 'class' => 'DevschoolCinemaBundle:Genre','choice_label' => 'nom',))
     	->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-    	->add('date', DateType::class, array('attr' => array('class' => 'formcontrol', 'style' => 'margin-bottom:15px')))
+    	->add('date')
     	->add('Ajouter un Film', SubmitType::class, array('attr' => array('label' => 'Create Film', 'class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
     	->getForm();
 
@@ -62,11 +65,13 @@ class DefaultController extends Controller
     		$realisateur = $form['realisateur']->getData();
     		$description = $form['description']->getData();
     		$date = $form['date']->getData();
+            $genre = $form['genre']->getData();
         
 
     		$films->setTitre($titre);
     		$films->setRealisateur($realisateur);
     		$films->setDescription($description);
+            $films->setDescription($genre);
     		$films->setDate($date);
 
     		$em = $this->getDoctrine()->getManager();
@@ -94,16 +99,34 @@ class DefaultController extends Controller
        ->find($id);
 
            	$films->setTitre($films->getTitre());
-    		$films->setRealisateur($films->getRealisateur());
     		$films->setDescription($films->getDescription());
     		$films->setDate($films->getDate());
 
 
     	$form = $this ->createFormBuilder($films)
     	->add('titre', TextType::class, array('attr' => array('class' => 'fomr-control', 'style' => 'margin-bottom:15px')))
-    	->add('realisateur', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+    	->add('realisateur', EntityType::class, array( // query choices from this entity
+    'class' => 'DevschoolCinemaBundle:Realisateur',
+
+    // use the User.username property as the visible option string
+    'choice_label' => 'nom',
+
+    // used to render a select box, check boxes or radios
+    // 'multiple' => true,
+    // 'expanded' => true,
+    ))
+        ->add('genre', EntityType::class, array( // query choices from this entity
+    'class' => 'DevschoolCinemaBundle:Genre',
+
+    // use the User.username property as the visible option string
+    'choice_label' => 'nom',
+
+    // used to render a select box, check boxes or radios
+    // 'multiple' => true,
+    // 'expanded' => true,
+    ))
     	->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
-    	->add('date', DateType::class, array('attr' => array('class' => 'formcontrol', 'style' => 'margin-bottom:15px')))
+    	->add('date')
     	->add('Modifier le Film', SubmitType::class, array('attr' => array('label' => 'Create Film', 'class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
     	->getForm();
 

@@ -1,3 +1,7 @@
+{% extends 'DevschoolAdminBundle:Default:layout.html.twig' %}
+
+
+{% block body %}   
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,23 +49,50 @@
         </div>
         <!-- /.container -->
     </nav>
-        <br><br><br>
+    <br><br><br><br><br>
+
+
+
+
+   
+
+        <div id="content">
 
             <div class="container">
-    <div class="row">
-        <div id="content">
-            {% block body %}
-            <h2 class="page-header">Ajouter un Genre</h2>
-           
-    {{form_start(form)}}
-    {{form_widget(form)}}
+            <h2 class="page-header"> LES REALISATEURS</h2>
+            <div class="row">
+          
+            <div class="col-md-12 center">
+                <table class="table table-striped"> 
+                    <thead> 
+                    <tr>
+                        <th>Nom</th> 
+                        <th>Prenom</th> 
+                        <th>Id</th> 
+                        <th></th>
+                    </tr> 
+                    </thead> 
+                    <tbody> 
+                    {% for realisateur in realisateurs %}
+                    <tr> 
+                        <th scope="row">{{realisateur.nom}}</th> 
+                            <td>{{ realisateur.prenom }}</td> 
+                            <td>{{realisateur.id}}</td>  
+                            <td>
+        
+                            <a href="{{ path('admin_realisateur_modif', {'id': realisateur.id}) }}" class="btn btn-default">Modifier</a>
+                            <a href="{{ path('admin_realisateur_supprimer', {'id': realisateur.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                    </tr>
+                     {% endfor %} 
+                    </tbody> 
+                </table>
+                </div>
+                <a class="btn btn-danger" href="{{ path('admin') }}">Retour</a>
+                </div>
 
-    {{form_end(form)}} <a class="btn btn-danger" href="{{ path('admin') }}">Retour</a>
-
-
-    </div>
-    </div>
-            {% endblock %}
+                </div>
         </div>
-    </body>
-    </html>
+
+{% endblock %}
+
